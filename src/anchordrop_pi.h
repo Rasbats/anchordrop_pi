@@ -38,7 +38,7 @@
 #include <wx/fileconf.h>
 
 #include "ocpn_plugin.h" //Required for OCPN plugin functions
-#include "SARgui_impl.h"
+#include "anchordropgui_impl.h"
 
 #include "config.h"
 
@@ -63,7 +63,7 @@ public:
       int GetAPIVersionMinor();
       int GetPlugInVersionMajor();
       int GetPlugInVersionMinor();
-	  wxString GetCommonName();
+      wxString GetCommonName();
       wxBitmap *GetPlugInBitmap();
       wxString GetShortDescription();
       wxString GetLongDescription();
@@ -74,10 +74,10 @@ public:
       void OnToolbarToolCallback(int id);
       void SetCursorLatLon(double lat, double lon);
       void SetPositionFix(PlugIn_Position_Fix &pfix);
-	  
-	  // For right click datum selection
-	  void OnContextMenuItemCallback(int id);
-	  void OnSARDialogClose();
+
+      // For right click datum selection
+      void OnContextMenuItemCallback(int id);
+      void OnSARDialogClose();
 
 //    Optional plugin overrides
       void SetColorScheme(PI_ColorScheme cs);
@@ -95,8 +95,8 @@ public:
       double GetCursorLon(void) {return m_cursor_lon;}
       double GetCursorLat(void) {return m_cursor_lat;}
 
-	  int m_position_menu_id;
-	  
+      int m_position_menu_id;
+
 
 private:
       wxFileConfig      *m_pconfig;
@@ -110,10 +110,10 @@ private:
       int               m_leftclick_tool_id;
       bool              m_ShowHelp,m_bCaptureCursor,m_bCaptureShip;
       double m_ship_lon,m_ship_lat,m_cursor_lon,m_cursor_lat;
-	  bool				m_bSARShowIcon;
-	  bool				m_bShowSAR;
-	  wxBitmap			m_panelBitmap;
-	 
+      bool              m_bSARShowIcon;
+      bool              m_bShowSAR;
+      wxBitmap          m_panelBitmap;
+
 };
 
 #endif

@@ -25,7 +25,7 @@
  ***************************************************************************
  */
 
-#include "SARgui_impl.h"
+#include "anchordropgui_impl.h"
 
 CfgDlg::CfgDlg( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : CfgDlgDef( parent, id, title, pos, size, style )
 {
@@ -33,74 +33,74 @@ CfgDlg::CfgDlg( wxWindow* parent, wxWindowID id, const wxString& title, const wx
 
 Dlg::Dlg( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : DlgDef( parent, id, title, pos, size, style )
 {
-	this->Fit();
+    this->Fit();
 
     dbg=false; //for debug output set to true
 
     //initialise images
-    
+
     //m_bitmap_trackln->SetBitmap(* _img_trackln);
 }
 
 void Dlg::OnConvertToDegree( wxCommandEvent& event )
 {
-	ConvertToDegree();
+    ConvertToDegree();
 }
 
 void Dlg::ConvertToDegree()
 {
-	double DDLat;
-	double DDLon;
+    double DDLat;
+    double DDLon;
 
-	double DDLat1;
-	double DDLon1;
+    double DDLat1;
+    double DDLon1;
 
-	double MMLat;
-	double MMLon;
+    double MMLat;
+    double MMLon;
 
-	double SSLat;
-	double SSLon;
+    double SSLat;
+    double SSLon;
 
-	int DDlat1;
-	int DDlon1;
+    int DDlat1;
+    int DDlon1;
 
-	int MMlat1;
-	int MMlon1;
+    int MMlat1;
+    int MMlon1;
 
-	int NS;
-	int EW;
+    int NS;
+    int EW;
 
-	double MMlat0;
-	double MMlon0;
+    double MMlat0;
+    double MMlon0;
 
-	double MMlat2;
-	double MMlon2;
+    double MMlat2;
+    double MMlon2;
 
-	double SSlat1;
-	double SSlon1;
+    double SSlat1;
+    double SSlon1;
 
-	double value;
+    double value;
 
-	wxString s;
-	wxString s1;
-	wxString m1;
-	wxString d1;
+    wxString s;
+    wxString s1;
+    wxString m1;
+    wxString d1;
 
-	//set cell values to 0 if they are empty. This ensures conversion goes ok.
-	double test_value;
-	if (!this->m_Lat1_d->GetValue().ToDouble(&test_value)) { m_Lat1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lat1_m->GetValue().ToDouble(&test_value)) { m_Lat1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lat1_s->GetValue().ToDouble(&test_value)) { m_Lat1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
+    //set cell values to 0 if they are empty. This ensures conversion goes ok.
+    double test_value;
+    if (!this->m_Lat1_d->GetValue().ToDouble(&test_value)) { m_Lat1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_m->GetValue().ToDouble(&test_value)) { m_Lat1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_s->GetValue().ToDouble(&test_value)) { m_Lat1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	if (!this->m_Lon1_d->GetValue().ToDouble(&test_value)) { m_Lon1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lon1_m->GetValue().ToDouble(&test_value)) { m_Lon1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lon1_s->GetValue().ToDouble(&test_value)) { m_Lon1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_d->GetValue().ToDouble(&test_value)) { m_Lon1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_m->GetValue().ToDouble(&test_value)) { m_Lon1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_s->GetValue().ToDouble(&test_value)) { m_Lon1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	if (!this->m_Lat1_d1->GetValue().ToDouble(&test_value)) { m_Lat1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lat1_m1->GetValue().ToDouble(&test_value)) { m_Lat1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_d1->GetValue().ToDouble(&test_value)) { m_Lat1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_m1->GetValue().ToDouble(&test_value)) { m_Lat1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	if (!this->m_Lon1_d1->GetValue().ToDouble(&test_value)) { m_Lon1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lon1_m1->GetValue().ToDouble(&test_value)) { m_Lon1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_d1->GetValue().ToDouble(&test_value)) { m_Lon1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_m1->GetValue().ToDouble(&test_value)) { m_Lon1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
 
 
 
@@ -113,7 +113,7 @@ void Dlg::ConvertToDegree()
 
 void Dlg::OnClose(wxCloseEvent& event){
 
-	plugin->OnSARDialogClose();
+    plugin->OnSARDialogClose();
 }
 
 void Dlg::OnCursor(wxCommandEvent& event ){OnCursor();}
@@ -121,10 +121,10 @@ void Dlg::OnCursor(void){
     this->m_Lat1->SetValue(wxString::Format(wxT("%.6f"), plugin->GetCursorLat() ));
     this->m_Lon1->SetValue(wxString::Format(wxT("%.6f"), plugin->GetCursorLon() ));
 
-	setDDMM(); // Copies the lat.lon to the DDMM page
+    setDDMM(); // Copies the lat.lon to the DDMM page
 
-	m_wxNotebook234->SetSelection(0);
-	m_Lat1->SetFocus();
+    m_wxNotebook234->SetSelection(0);
+    m_Lat1->SetFocus();
 }
 
 void Dlg::OnShip(wxCommandEvent& event ){OnShip();}
@@ -132,10 +132,10 @@ void Dlg::OnShip(void){
     this->m_Lat1->SetValue(wxString::Format(wxT("%.6f"), plugin->GetShipLat() ));
     this->m_Lon1->SetValue(wxString::Format(wxT("%.6f"), plugin->GetShipLon() ));
 
-	setDDMM(); // Copies the lat.lon to the DDMM page
+    setDDMM(); // Copies the lat.lon to the DDMM page
 
-	m_wxNotebook234->SetSelection(0);
-	m_Lat1->SetFocus();
+    m_wxNotebook234->SetSelection(0);
+    m_Lat1->SetFocus();
 }
 
 
@@ -177,10 +177,10 @@ void Dlg::mouse_shortcut(wxMouseEvent& event) {
 
 void Dlg::OnCursorSelect(wxCommandEvent& event){
 
-	m_wxNotebook234->SetSelection(0);
-	m_Lat1->SetFocus();
-	m_Lat1->Clear();
-	m_Lon1->Clear();
+    m_wxNotebook234->SetSelection(0);
+    m_Lat1->SetFocus();
+    m_Lat1->Clear();
+    m_Lon1->Clear();
 
     wxMessageBox(_("To copy the cursor location place the cursor on the chart \n     ...and press <CTRL>+S") );
    // wxMessageBox(_("While this button is selected, or the cursor is in the lattitude or longitude box, you can copy the cursor location with <CTRL>+S") );
@@ -189,115 +189,115 @@ void Dlg::OnCursorSelect(wxCommandEvent& event){
 
 void Dlg::getDatum(double m_lat, double m_lon) {
 
-	wxString myLat = wxString::Format("%f", m_lat);
-	wxString myLon = wxString::Format("%f", m_lon);
+    wxString myLat = wxString::Format("%f", m_lat);
+    wxString myLon = wxString::Format("%f", m_lon);
 
-	m_Lat1->SetValue(myLat);
-	m_Lon1->SetValue(myLon);
+    m_Lat1->SetValue(myLat);
+    m_Lon1->SetValue(myLon);
 
-	setDDMM();
+    setDDMM();
 
-	m_wxNotebook234->SetSelection(0);
-	m_Lat1->SetFocus();
-	
+    m_wxNotebook234->SetSelection(0);
+    m_Lat1->SetFocus();
+
 }
 
 
 void Dlg::setDDMM() {  // after entering dd.dddd from cursor, menu, lat
 
-	double DDLat;
-	double DDLon;
+    double DDLat;
+    double DDLon;
 
-	int DDlat1;
-	int DDlon1;
+    int DDlat1;
+    int DDlon1;
 
-	double MMlat0;
-	double MMlon0;
+    double MMlat0;
+    double MMlon0;
 
-	double MMlat2;
-	double MMlon2;
+    double MMlat2;
+    double MMlon2;
 
-	double SSlat1;
-	double SSlon1;
+    double SSlat1;
+    double SSlon1;
 
-	double value;
+    double value;
 
-	wxString s;
-	wxString s1;
-	wxString m1;
-	wxString d1;
+    wxString s;
+    wxString s1;
+    wxString m1;
+    wxString d1;
 
-	//set cell values to 0 if they are empty. This ensures conversion goes ok.
-	double test_value;
-	if (!this->m_Lat1_d->GetValue().ToDouble(&test_value)) { m_Lat1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lat1_m->GetValue().ToDouble(&test_value)) { m_Lat1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lat1_s->GetValue().ToDouble(&test_value)) { m_Lat1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
+    //set cell values to 0 if they are empty. This ensures conversion goes ok.
+    double test_value;
+    if (!this->m_Lat1_d->GetValue().ToDouble(&test_value)) { m_Lat1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_m->GetValue().ToDouble(&test_value)) { m_Lat1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_s->GetValue().ToDouble(&test_value)) { m_Lat1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	if (!this->m_Lon1_d->GetValue().ToDouble(&test_value)) { m_Lon1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lon1_m->GetValue().ToDouble(&test_value)) { m_Lon1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lon1_s->GetValue().ToDouble(&test_value)) { m_Lon1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_d->GetValue().ToDouble(&test_value)) { m_Lon1_d->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_m->GetValue().ToDouble(&test_value)) { m_Lon1_m->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_s->GetValue().ToDouble(&test_value)) { m_Lon1_s->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	if (!this->m_Lat1_d1->GetValue().ToDouble(&test_value)) { m_Lat1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lat1_m1->GetValue().ToDouble(&test_value)) { m_Lat1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_d1->GetValue().ToDouble(&test_value)) { m_Lat1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lat1_m1->GetValue().ToDouble(&test_value)) { m_Lat1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	if (!this->m_Lon1_d1->GetValue().ToDouble(&test_value)) { m_Lon1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
-	if (!this->m_Lon1_m1->GetValue().ToDouble(&test_value)) { m_Lon1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_d1->GetValue().ToDouble(&test_value)) { m_Lon1_d1->SetValue(wxString::Format(wxT("%i"), 0)); }
+    if (!this->m_Lon1_m1->GetValue().ToDouble(&test_value)) { m_Lon1_m1->SetValue(wxString::Format(wxT("%i"), 0)); }
 
-	s = m_Lat1->GetValue();
-	s.ToDouble(&value);
-	DDLat = value;
-	s = m_Lon1->GetValue();
-	s.ToDouble(&value);
-	DDLon = value;
+    s = m_Lat1->GetValue();
+    s.ToDouble(&value);
+    DDLat = value;
+    s = m_Lon1->GetValue();
+    s.ToDouble(&value);
+    DDLon = value;
 
-	DDlat1 = abs(int(DDLat));
-	DDlon1 = abs(int(DDLon));
+    DDlat1 = abs(int(DDLat));
+    DDlon1 = abs(int(DDLon));
 
-	// set the ddmm page
+    // set the ddmm page
 
-	m_Lat1_d1->SetValue(wxString::Format(_T("%i"), (int)DDlat1));
-	m_Lon1_d1->SetValue(wxString::Format(_T("%i"), (int)DDlon1));
+    m_Lat1_d1->SetValue(wxString::Format(_T("%i"), (int)DDlat1));
+    m_Lon1_d1->SetValue(wxString::Format(_T("%i"), (int)DDlon1));
 
-	MMlat0 = (fabs(DDLat) - double(DDlat1)) * 60;
-	MMlon0 = (fabs(DDLon) - double(DDlon1)) * 60;
+    MMlat0 = (fabs(DDLat) - double(DDlat1)) * 60;
+    MMlon0 = (fabs(DDLon) - double(DDlon1)) * 60;
 
-	m_Lat1_m1->SetValue(wxString::Format(_T("%.6f"), MMlat0));
-	m_Lon1_m1->SetValue(wxString::Format(_T("%.6f"), MMlon0));
+    m_Lat1_m1->SetValue(wxString::Format(_T("%.6f"), MMlat0));
+    m_Lon1_m1->SetValue(wxString::Format(_T("%.6f"), MMlon0));
 
-	if (DDLat > 0) {
-		m_Lat1_NS1->SetSelection(0);
-		m_Lat1_NS->SetSelection(0);
-	}
-	else {
-		m_Lat1_NS1->SetSelection(1);
-		m_Lat1_NS->SetSelection(1);
-	}
+    if (DDLat > 0) {
+        m_Lat1_NS1->SetSelection(0);
+        m_Lat1_NS->SetSelection(0);
+    }
+    else {
+        m_Lat1_NS1->SetSelection(1);
+        m_Lat1_NS->SetSelection(1);
+    }
 
-	if (DDLon > 0) {
-		m_Lon1_EW1->SetSelection(0);
-		m_Lon1_EW->SetSelection(0);
-	}
-	else {
-		m_Lon1_EW1->SetSelection(1);
-		m_Lon1_EW->SetSelection(1);
-	}
+    if (DDLon > 0) {
+        m_Lon1_EW1->SetSelection(0);
+        m_Lon1_EW->SetSelection(0);
+    }
+    else {
+        m_Lon1_EW1->SetSelection(1);
+        m_Lon1_EW->SetSelection(1);
+    }
 
-	// set the ddmmss page			
+    // set the ddmmss page
 
-	m_Lat1_d->SetValue(wxString::Format(_T("%i"), abs((int)DDlat1)));
-	m_Lon1_d->SetValue(wxString::Format(_T("%i"), abs((int)DDlon1)));
+    m_Lat1_d->SetValue(wxString::Format(_T("%i"), abs((int)DDlat1)));
+    m_Lon1_d->SetValue(wxString::Format(_T("%i"), abs((int)DDlon1)));
 
-	m_Lat1_m->SetValue(wxString::Format(_T("%i"), abs((int)MMlat0)));
-	m_Lon1_m->SetValue(wxString::Format(_T("%i"), abs((int)MMlon0)));
+    m_Lat1_m->SetValue(wxString::Format(_T("%i"), abs((int)MMlat0)));
+    m_Lon1_m->SetValue(wxString::Format(_T("%i"), abs((int)MMlon0)));
 
-	MMlat2 = int(MMlat0);
-	MMlon2 = int(MMlon0);
+    MMlat2 = int(MMlat0);
+    MMlon2 = int(MMlon0);
 
-	SSlat1 = (MMlat0 - MMlat2) * 60;
-	SSlon1 = (MMlon0 - MMlon2) * 60;
+    SSlat1 = (MMlat0 - MMlat2) * 60;
+    SSlon1 = (MMlon0 - MMlon2) * 60;
 
-	m_Lat1_s->SetValue(wxString::Format(_T("%.6f"), SSlat1));
-	m_Lon1_s->SetValue(wxString::Format(_T("%.6f"), SSlon1));
+    m_Lat1_s->SetValue(wxString::Format(_T("%.6f"), SSlat1));
+    m_Lon1_s->SetValue(wxString::Format(_T("%.6f"), SSlon1));
 
 
 }
