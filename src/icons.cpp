@@ -11,8 +11,8 @@ wxBitmap *_img_rescue;
 
 #ifdef PLUGIN_USE_SVG
 #include "ocpn_plugin.h"
-wxString _svg_sar;
-wxString _svg_sar_toggled;
+wxString _svg_anchordrop;
+wxString _svg_anchordrop_toggled;
 #endif
 
 
@@ -26,17 +26,17 @@ void initialize_images(void)
 wxFileName fn;
 wxString tmp_path;
 
-tmp_path = GetPluginDataDir("sar_pi");
+tmp_path = GetPluginDataDir("anchordrop_pi");
 fn.SetPath(tmp_path);
 fn.AppendDir(_T("data"));
 
 
 
 #ifdef PLUGIN_USE_SVG
-fn.SetFullName("sar_pi.svg");
-_svg_sar = fn.GetFullPath();
-fn.SetFullName("sar_pi_toggled.svg");
-_svg_sar_toggled = fn.GetFullPath();
+fn.SetFullName("anchordrop_pi.svg");
+_svg_anchordrop = fn.GetFullPath();
+fn.SetFullName("anchordrop_pi_toggled.svg");
+_svg_anchordrop_toggled = fn.GetFullPath();
 #endif
 
 

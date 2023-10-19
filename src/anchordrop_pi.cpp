@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  SAR Plugin
+ * Purpose:  anchordrop Plugin
  * Author:   SaltyPaws
  *
  ***************************************************************************
@@ -68,10 +68,10 @@ anchordrop_pi::anchordrop_pi(void *ppimgr)
 	wxFileName fn;
 	
 
-	auto path = GetPluginDataDir("sar_pi");
+	auto path = GetPluginDataDir("anchordrop_pi");
 	fn.SetPath(path);
 	fn.AppendDir(_T("data"));
-	fn.SetFullName("sar_panel_icon.png");
+	fn.SetFullName("anchordrop_panel_icon.png");
 	  
     path = fn.GetFullPath();
 
@@ -86,14 +86,14 @@ anchordrop_pi::anchordrop_pi(void *ppimgr)
     if (panelIcon.IsOk())
         m_panelBitmap = wxBitmap(panelIcon);
     else
-		wxLogWarning(_("SAR panel icon has NOT been loaded"));
+		wxLogWarning(_("panel icon has NOT been loaded"));
 
-	m_bShowSAR = false;
+	m_bShowanchordrop = false;
 }
 
 int anchordrop_pi::Init(void)
 {
-      AddLocaleCatalog(_T("opencpn-sar_pi"));
+      AddLocaleCatalog(_T("opencpn-anchordrop_pi"));
 
       // Set some default private member parameters
       m_route_dialog_x = 0;
@@ -111,11 +111,11 @@ int anchordrop_pi::Init(void)
 
       //    This PlugIn needs a toolbar icon, so request its insertion
 #ifdef PLUGIN_USE_SVG
-	  m_leftclick_tool_id = InsertPlugInToolSVG("SAR", _svg_sar, _svg_sar, _svg_sar_toggled,
-		  wxITEM_CHECK, _("SAR"), "", NULL, CALCULATOR_TOOL_POSITION, 0, this);
+	  m_leftclick_tool_id = InsertPlugInToolSVG("anchordrop", _svg_anchordrop, _svg_anchordrop, _svg_anchordrop_toggled,
+		  wxITEM_CHECK, _("anchordrop"), "", NULL, CALCULATOR_TOOL_POSITION, 0, this);
 #else
       m_leftclick_tool_id  = InsertPlugInTool(_T(""), _img_rescue, _img_rescue, wxITEM_NORMAL,
-            _("SAR"), _T(""), NULL,
+            _("anchordrop"), _T(""), NULL,
              CALCULATOR_TOOL_POSITION, 0, this);
 #endif
 
@@ -124,7 +124,7 @@ int anchordrop_pi::Init(void)
 	  wxMenu dummy_menu;
 	  m_position_menu_id = AddCanvasContextMenuItem
 
-	  (new wxMenuItem(&dummy_menu, -1, _("Select SAR Datum Point")), this);
+	  (new wxMenuItem(&dummy_menu, -1, _("Select anchordrop Datum Point")), this);
 	  SetCanvasContextMenuItemViz(m_position_menu_id, false);
 
       m_pDialog = NULL;
@@ -153,8 +153,8 @@ bool anchordrop_pi::DeInit(void)
             delete m_pDialog;
             m_pDialog = NULL;
 
-			m_bShowSAR = false;
-			SetToolbarItemState(m_leftclick_tool_id, m_bShowSAR);
+			m_bShowanchordrop = false;
+			SetToolbarItemState(m_leftclick_tool_id, m_bShowanchordrop);
       }
       SaveConfig();
 
@@ -185,7 +185,7 @@ int anchordrop_pi::GetPlugInVersionMinor()
 
 wxString anchordrop_pi::GetCommonName()
 {
-	return "sar";
+	return "anchordrop";
 }
 
 wxBitmap *anchordrop_pi::GetPlugInBitmap()
@@ -228,10 +228,10 @@ void anchordrop_pi::OnToolbarToolCallback(int id)
 	  m_pDialog->Fit();
 
 	  //Toggle 
-	  m_bShowSAR = !m_bShowSAR;
+	  m_bShowanchordrop = !m_bShowanchordrop;
 
 	  //    Toggle dialog? 
-	  if (m_bShowSAR) {
+	  if (m_bShowanchordrop) {
 		  m_pDialog->Show();
 		  SetCanvasContextMenuItemViz(m_position_menu_id, true);
 	  }
@@ -242,7 +242,7 @@ void anchordrop_pi::OnToolbarToolCallback(int id)
 
 	  // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
 	  // to actual status to ensure correct status upon toolbar rebuild
-	  SetToolbarItemState(m_leftclick_tool_id, m_bShowSAR);
+	  SetToolbarItemState(m_leftclick_tool_id, m_bShowanchordrop);
 
 	  RequestRefresh(m_parent_window); // refresh main window
 
@@ -342,10 +342,10 @@ void anchordrop_pi::OnContextMenuItemCallback(int id)
 	}
 }
 
-void anchordrop_pi::OnSARDialogClose() {
+void anchordrop_pi::OnanchordropDialogClose() {
 
-	m_bShowSAR = false;
-	SetToolbarItemState(m_leftclick_tool_id, m_bShowSAR);
+	m_bShowanchordrop = false;
+	SetToolbarItemState(m_leftclick_tool_id, m_bShowanchordrop);
 	m_pDialog->Hide();
 	SaveConfig();
 

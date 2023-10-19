@@ -90,14 +90,14 @@ class DlgDef : public wxDialog
 		virtual void key_shortcut( wxKeyEvent& event ) { event.Skip(); }
 		virtual void OnNoteBookFit( wxNotebookEvent& event ) { event.Skip(); }
 		virtual void OnShip( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnCursor( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCursorSelect( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnConvertToDegree( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 		wxBoxSizer* bSframe;
 
-		DlgDef( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("SAR"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX|wxRESIZE_BORDER );
+		DlgDef( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("anchordrop"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX|wxRESIZE_BORDER );
 
 		~DlgDef();
 
@@ -121,7 +121,7 @@ class CfgDlgDef : public wxDialog
 		wxCheckBox* m_CaptureShip;
 		wxCheckBox* m_CaptureCursor;
 
-		CfgDlgDef( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("SAR preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE );
+		CfgDlgDef( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("anchordrop preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE );
 
 		~CfgDlgDef();
 

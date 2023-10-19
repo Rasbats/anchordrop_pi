@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  SAR Plugin
+ * Purpose:  anchordrop Plugin
  * Author:   SaltyPaws
  *
  ***************************************************************************
@@ -46,13 +46,13 @@ class anchordrop_pi;
 class CfgDlg : public CfgDlgDef
 {
 public:
-      CfgDlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("SAR preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE );
+      CfgDlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("anchordrop preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE );
 };
 
 class Dlg : public DlgDef
 {
 public:
-        Dlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("SAR Plugin by SaltyPaws/Rasbats"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION| wxDEFAULT_DIALOG_STYLE | wxMINIMIZE_BOX | wxRESIZE_BORDER);
+        Dlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("anchordrop Plugin by SaltyPaws/Rasbats"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION| wxDEFAULT_DIALOG_STYLE | wxMINIMIZE_BOX | wxRESIZE_BORDER);
         //void OnToggle( wxCommandEvent& event );
         void OnConvertToDegree( wxCommandEvent& event );
         void ConvertToDegree();

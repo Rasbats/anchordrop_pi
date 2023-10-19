@@ -113,7 +113,7 @@ void Dlg::ConvertToDegree()
 
 void Dlg::OnClose(wxCloseEvent& event){
 
-    plugin->OnSARDialogClose();
+    plugin->OnanchordropDialogClose();
 }
 
 void Dlg::OnCursor(wxCommandEvent& event ){OnCursor();}
@@ -125,6 +125,17 @@ void Dlg::OnCursor(void){
 
     m_wxNotebook234->SetSelection(0);
     m_Lat1->SetFocus();
+
+    PlugIn_Waypoint* wayPoint = new PlugIn_Waypoint;
+    wayPoint->m_IconName = "Anchor";
+    wayPoint->m_lat = plugin->GetCursorLat();
+    wayPoint->m_lon = plugin->GetCursorLon();
+    wayPoint->m_MarkDescription = "Anchor Position";
+    wayPoint->m_IsVisible = true;
+    wayPoint->m_MarkName = "50m";	
+
+    AddSingleWaypoint(wayPoint, true);
+
 }
 
 void Dlg::OnShip(wxCommandEvent& event ){OnShip();}
@@ -136,6 +147,16 @@ void Dlg::OnShip(void){
 
     m_wxNotebook234->SetSelection(0);
     m_Lat1->SetFocus();
+
+    PlugIn_Waypoint* wayPoint = new PlugIn_Waypoint;
+    wayPoint->m_IconName = "Anchor";
+    wayPoint->m_lat = plugin->GetShipLat();
+    wayPoint->m_lon = plugin->GetShipLon();
+    wayPoint->m_MarkDescription = "Anchor Position";
+    wayPoint->m_IsVisible = true;
+    wayPoint->m_MarkName = "50m";
+
+        AddSingleWaypoint(wayPoint, true);
 }
 
 

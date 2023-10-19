@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  SAR Plugin
+ * Purpose:  anchordrop Plugin
  * Author:   SaltyPaws
  *
  ***************************************************************************
@@ -77,7 +77,7 @@ public:
 
       // For right click datum selection
       void OnContextMenuItemCallback(int id);
-      void OnSARDialogClose();
+      void OnanchordropDialogClose();
 
 //    Optional plugin overrides
       void SetColorScheme(PI_ColorScheme cs);
@@ -110,8 +110,8 @@ private:
       int               m_leftclick_tool_id;
       bool              m_ShowHelp,m_bCaptureCursor,m_bCaptureShip;
       double m_ship_lon,m_ship_lat,m_cursor_lon,m_cursor_lat;
-      bool              m_bSARShowIcon;
-      bool              m_bShowSAR;
+      bool              m_banchordropShowIcon;
+      bool              m_bShowanchordrop;
       wxBitmap          m_panelBitmap;
 
 };
