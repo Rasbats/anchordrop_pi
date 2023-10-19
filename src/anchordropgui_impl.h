@@ -39,6 +39,8 @@
 #include "anchordrop_pi.h"
 #include "NavFunc.h"
 #include "tinyxml.h"
+#include <cmath>
+
 using namespace std;
 
 class anchordrop_pi;
